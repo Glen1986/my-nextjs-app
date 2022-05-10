@@ -1,27 +1,17 @@
-import { useRouter } from 'next/router'
-// import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { useIsMounted } from './hooks/useIsMounted'
 
 const ComponenteDinamico = () => {
-    // const [loaded, setLoaded] = useState(false)
-    const router = useRouter()
-    //
-    // useEffect(() => {
-    // if (router.isReady) {
-    // setLoaded(true)
-    // }
-    // }, [router.isReady])
-    //
-    // if (router.isReady) {
-    // return null
-    // }
-    // if (!loaded) {
-    // return null
-    // }
+    const isMounted = useIsMounted()
     console.log({ router }, router.query.id)
 
+    if (!isMounted) {
+        return null
+    }
     return (
         <div>
             <p>componenete dinamico</p>
+            <Link href="/">Inicio</Link>
         </div>
     )
 }
